@@ -20,6 +20,9 @@ vx_prev_half = 0         # (m/s)
 vy_prev_half = 2.978e4   # (m/s)
 
 
+# functions ----------------------------------------------------------
+
+
 # leapfrog algorithm -------------------------------------------------
 
 saveGIF(interval = .05,
@@ -33,7 +36,7 @@ saveGIF(interval = .05,
                   y_next = y + dt * vy_next_half
                   
                   # plot
-                  df <- data.frame(x, y) 
+                  df <- data.frame(rbind(c(x=x, y=y), c(x=0,y=0)))
                   gg <- ggplot(df, aes(x=x, y=y))
                   points <- geom_point()
                   x_lim <- xlim(-2e11, 2e11) 
