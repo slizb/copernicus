@@ -22,6 +22,14 @@ vy_prev_half = 2.978e4   # (m/s)
 
 # functions ----------------------------------------------------------
 
+plot_system <- function(df) {
+     gg <- ggplot(df, aes(x, y))
+     points <- geom_point()
+     x_lim <- xlim(-2e11, 2e11) 
+     y_lim <- ylim(-2e11, 2e11)
+     
+     return(print(gg + points + x_lim + y_lim))
+}
 
 # leapfrog algorithm -------------------------------------------------
 
@@ -37,12 +45,8 @@ saveGIF(interval = .05,
                   
                   # plot
                   df <- data.frame(rbind(c(x=x, y=y), c(x=0,y=0)))
-                  gg <- ggplot(df, aes(x=x, y=y))
-                  points <- geom_point()
-                  x_lim <- xlim(-2e11, 2e11) 
-                  y_lim <- ylim(-2e11, 2e11)
-                       
-                  print(gg + points + x_lim + y_lim)
+                  
+                  plot_system(df)
                   
                   # update positions
                   x = x_next
