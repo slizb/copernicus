@@ -1,0 +1,16 @@
+Package: copernicus
+Type: Package
+Title: Visualizes The Solar System.
+Version: 0.1.0
+Authors@R: as.person(c("Brad Sliz <bradsliz@gmail.com> [aut, cre]"))
+Description: copernicus uses numerical integration techniques to simulate
+    the motion of the sun and planets as they move through the solar system,
+    interacting with each other through gravitational forces.
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports:
+    ggplot2 (>= 2.1.0),
+    animation (>= 2.4.1)
+RoxygenNote: 6.0.1
+Suggests: testthat
