@@ -22,40 +22,70 @@ vy_prev_half = 2.978e4   # (m/s)
 
 # functions ----------------------------------------------------------
 
+
+#' Create a static plot of the solar system
+#'
+#' @param variables
+#'
+#' @return a plot
+#'
+#' @examples
 plot_system <- function(df) {
-     gg <- ggplot(df, aes(x, y))
+     gg <- ggplot(df, aes(x=x, y=y))
      points <- geom_point()
-     x_lim <- xlim(-2e11, 2e11) 
+     x_lim <- xlim(-2e11, 2e11)
      y_lim <- ylim(-2e11, 2e11)
-     
-     return(print(gg + points + x_lim + y_lim))
+
+     print(gg + points + x_lim + y_lim)
 }
+
+
+#' execute one iteration of the leapfrog algorithm
+#'
+#' @param x
+#' @param y
+#' @param vx_prev_half
+#' @param vy_prev_half
+#'
+#' @return list of next sequence of xy positions and velocities
+#' @export
+#'
+#' @examples
+execute_leapfrog <- function(x, y, vx_prev_half, vy_prev_half) {
+
+     # compute future positions
+     vx_next_half <- vx_prev_half - dt * G * M * x * (x^2 + y^2) ^ (-3/2)
+     x_next <- x + dt * vx_next_half
+
+     vy_next_half <- vy_prev_half - dt * G * M * y * (x^2 + y^2) ^ (-3/2)
+     y_next <- y + dt * vy_next_half
+
+     return(list(x_next, y_next, vx_next_half, vy_next_half))
+}
+
 
 # leapfrog algorithm -------------------------------------------------
 
 saveGIF(interval = .05,
         expr = {
-             
+
              for (i in 1:365){
-                  vx_next_half = vx_prev_half - dt * G * M * x * (x^2 + y^2) ^ (-3/2)
-                  x_next = x + dt * vx_next_half
-               
-                  vy_next_half = vy_prev_half - dt * G * M * y * (x^2 + y^2) ^ (-3/2)
-                  y_next = y + dt * vy_next_half
-                  
+
                   # plot
-                  df <- data.frame(rbind(c(x=x, y=y), c(x=0,y=0)))
-                  
+                  df <- data.frame(rbind(c(x=x, y=y),
+                                         c(x=0,y=0)))
+
                   plot_system(df)
-                  
+
+                  # run leapfrog algorithm
+                  next_sequence <- execute_leapfrog(x, y, vx_prev_half, vy_prev_half)
+
                   # update positions
-                  x = x_next
-                  y = y_next
-                  
-                  # update velocities
-                  vx_prev_half = vx_next_half
-                  vy_prev_half = vy_next_half
-                  
+                  x <- next_sequence[[1]]
+                  y <- next_sequence[[2]]
+                  vx_prev_half <- next_sequence[[3]]
+                  vy_prev_half <- next_sequence[[4]]
+
              }
         }
 )
