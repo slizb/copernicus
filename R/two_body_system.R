@@ -34,8 +34,11 @@ plot_system <- function(df) {
      points <- geom_point()
      x_lim <- xlim(-2e11, 2e11)
      y_lim <- ylim(-2e11, 2e11)
+     opts <- theme(panel.background = element_rect(fill = "black"),
+                   panel.grid.major = element_blank(),
+                   panel.grid.minor = element_blank())
 
-     return(gg + points + x_lim + y_lim)
+     return(gg + points + x_lim + y_lim + opts)
 }
 
 
