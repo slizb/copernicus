@@ -1,6 +1,5 @@
 
 library(animation)
-library(magrittr)
 library(ggplot2)
 
 rm(list=ls())
@@ -31,12 +30,12 @@ vy_prev_half = 2.978e4   # (m/s)
 #'
 #' @examples
 plot_system <- function(df) {
-     gg <- ggplot(df, aes(x=x, y=y))
+     gg <- ggplot(df, aes(x=x, y=y, color=body ) )
      points <- geom_point()
      x_lim <- xlim(-2e11, 2e11)
      y_lim <- ylim(-2e11, 2e11)
 
-     print(gg + points + x_lim + y_lim)
+     return(gg + points + x_lim + y_lim)
 }
 
 
@@ -64,7 +63,7 @@ execute_leapfrog <- function(x, y, vx_prev_half, vy_prev_half) {
 }
 
 
-# leapfrog algorithm -------------------------------------------------
+# run simulation -----------------------------------------------------
 
 saveGIF(interval = .05,
         expr = {
@@ -73,9 +72,10 @@ saveGIF(interval = .05,
 
                   # plot
                   df <- data.frame(rbind(c(x=x, y=y),
-                                         c(x=0,y=0)))
+                                         c(x=0, y=0)))
+                  df$body <- c('earth', 'sun')
 
-                  plot_system(df)
+                  print(plot_system(df))
 
                   # run leapfrog algorithm
                   next_sequence <- execute_leapfrog(x, y, vx_prev_half, vy_prev_half)
