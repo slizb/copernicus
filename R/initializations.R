@@ -1,31 +1,26 @@
 
 
-set_constants <- function(G = 6.67408e-11,
+AU <- 1.496e11 # astronaumical unit conversion
+
+
+set_constants <- function(G = 6.67408e-11 / AU^3,
                           M = 1.989e30,
-                          dt = 8.64e4,
-                          au = 1.496e11) {
+                          dt = 8.64e4) {
   constants <- list("G" = G,
                     "M" = M,
-                    "dt" = dt,
-                    "au" = au)
+                    "dt" = dt)
   return(constants)
-  
 }
 
 
+set_initializations <- function(earth_x = 1.496e11 / AU,
+                                earth_y = 0,
+                                earth_vx = 0,
+                                earth_vy = 2.978e4 / AU) {
+  initializations <- list("earth_x" = earth_x,
+                          "earth_y" = earth_y,
+                          "earth_vx" = earth_vx,
+                          "earth_vy" = earth_vy)
+  return(initializations)
+}
 
-
-# initializations ----------------------------------------------------
-
-x <- 1.496e11             # (m)
-y <- 0                    # (m)
-vx_prev_half <- 0         # (m/s)
-vy_prev_half <- 2.978e4   # (m/s)
-
-# rescale to au's ----------------------------------------------------
-
-G <- G / au^3
-x <- x / au
-y <- y / au
-vx_prev_half <- vx_prev_half / au
-vy_prev_half <- vy_prev_half / au
