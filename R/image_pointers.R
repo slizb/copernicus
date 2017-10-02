@@ -1,6 +1,6 @@
 
 
-package_root <- rprojroot::find_package_root_file()
+package_root <- here::here()
 
 load_image <- function(rel_path) {
   im_path <- paste0(package_root, rel_path)
