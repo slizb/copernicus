@@ -15,4 +15,5 @@ Imports:
     png,
     grid (>= 3.2.3)
 RoxygenNote: 6.0.1
-Suggests: testthat
+Suggests: testthat,
+    covr
