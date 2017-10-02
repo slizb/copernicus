@@ -11,7 +11,7 @@ pad <- function(x, optima, range, size) {
 
 render_body <- function(df, body_name, size) {
   body_pos <- filter(df, body == body_name)
-  
+  image_dict <- create_image_dict()
   annotation_custom(image_dict[[body_name]],
                     xmin = pad(body_pos$x, 'min', 3, size),
                     xmax = pad(body_pos$x, 'max', 3, size),
