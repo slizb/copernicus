@@ -1,10 +1,7 @@
 
-library(png)
-library(grid)
-
 
 load_image <- function(im_path) {
-  rasterGrob(readPNG(im_path), interpolate = FALSE)
+  grid::rasterGrob(png::readPNG(im_path), interpolate = FALSE)
 }
 
 
