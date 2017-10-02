@@ -27,7 +27,7 @@ render_body <- function(df, body_name, size) {
 #'
 #' @examples
 plot_system <- function(df) {
-  qp <- qplot(-1.5:1.5, -1.5:1.5, geom = "blank")
+  qp <- ggplot2::qplot(-1.5:1.5, -1.5:1.5, geom = "blank")
   
   earth_plot <- render_body(df, 'earth', .13)
   sun_plot <- render_body(df, 'sun', .4)
