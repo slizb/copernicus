@@ -10,7 +10,7 @@ License: MIT
 Encoding: UTF-8
 LazyData: true
 Imports:
-    ggplot2 (>= 2.1.0)
+    tidyverse,
     animation (>= 2.4.1),
     png,
     grid (>= 3.2.3)
