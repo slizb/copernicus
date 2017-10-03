@@ -1,6 +1,6 @@
 
 
-package_root <- here::here()
+package_root <- devtools::package_file()
 
 load_image <- function(rel_path) {
   im_path <- paste0(package_root, rel_path)
