@@ -13,7 +13,7 @@ Imports:
     tidyverse,
     animation (>= 2.4.1),
     png,
-    grid (>= 3.2.3)
+    grid (>= 3.2.3),
     devtools
 RoxygenNote: 6.0.1
 Suggests: testthat,
