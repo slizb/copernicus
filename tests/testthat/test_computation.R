@@ -3,9 +3,9 @@ library(copernicus)
 
 test_that("execute_leapfrog() fails given invalid data", {
   expect_error(execute_leapfrog())
-  expect_error(execute_leapfrog(NA))
-  expect_error(execute_leapfrog(NULL))
-  expect_error(execute_leapfrog('asdf'))
+  expect_error(execute_leapfrog(NA, NA, NA, NA, NA))
+  expect_error(execute_leapfrog(NULL, NULL, NULL, NULL, NULL))
+  expect_error(execute_leapfrog('a', 'b', 'c', 'd', 'e'))
 })
 
 test_that("execute_leapfrog() works given valid data", {
