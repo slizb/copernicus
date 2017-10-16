@@ -1,9 +1,4 @@
 
-library(animation)
-library(ggplot2)
-library(dplyr)
-
-
 #' execute one iteration of the leapfrog algorithm
 #'
 #' @param x
