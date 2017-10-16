@@ -8,10 +8,6 @@ test_that("plot_system() fails given invalid data", {
 })
 
 test_that("plot_system() returns a plot given valid data", {
-  print('============')
-  print('WORKING DIRECTORY:')
-  print(getwd())
-  print('============')
   df <- data.frame(rbind(c(x=1, y=1),
                          c(x=0, y=0)))
   df$body <- c('bob', 'martin')
