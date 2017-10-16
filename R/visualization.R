@@ -12,11 +12,11 @@ pad <- function(x, optima, range, size) {
 render_body <- function(df, body_name, size) {
   body_pos <- dplyr::filter(df, body == body_name)
   image_dict <- create_image_dict()
-  annotation_custom(image_dict[[body_name]],
-                    xmin = pad(body_pos$x, 'min', 3, size),
-                    xmax = pad(body_pos$x, 'max', 3, size),
-                    ymin = pad(body_pos$y, 'min', 3, size),
-                    ymax = pad(body_pos$y, 'max', 3, size))
+  ggplot2::annotation_custom(image_dict[[body_name]],
+                             xmin = pad(body_pos$x, 'min', 3, size),
+                             xmax = pad(body_pos$x, 'max', 3, size),
+                             ymin = pad(body_pos$y, 'min', 3, size),
+                             ymax = pad(body_pos$y, 'max', 3, size))
 }
 
 #' Create a static plot of the solar system
