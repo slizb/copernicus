@@ -31,15 +31,15 @@ plot_system <- function(df) {
   
   earth_plot <- render_body(df, 'earth', .13)
   sun_plot <- render_body(df, 'sun', .4)
-  opts <- theme(panel.background = element_rect(fill = "black"),
-                panel.grid.major = element_blank(),
-                panel.grid.minor = element_blank(),
-                axis.line = element_blank(),
-                axis.text.x = element_blank(),
-                axis.text.y = element_blank(),
-                axis.ticks = element_blank(),
-                axis.title.x = element_blank(),
-                axis.title.y = element_blank())
+  opts <- ggplot2::theme(panel.background = ggplot2::element_rect(fill = "black"),
+                         panel.grid.major = ggplot2::element_blank(),
+                         panel.grid.minor = ggplot2::element_blank(),
+                         axis.line = ggplot2::element_blank(),
+                         axis.text.x = ggplot2::element_blank(),
+                         axis.text.y = ggplot2::element_blank(),
+                         axis.ticks = ggplot2::element_blank(),
+                         axis.title.x = ggplot2::element_blank(),
+                         axis.title.y = ggplot2::element_blank())
   
   return(qp + sun_plot + earth_plot + opts)
 }
