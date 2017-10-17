@@ -10,7 +10,4 @@ test_that("create_image_dict() loads all body images", {
   image_dict <- create_image_dict()
   expect_is(image_dict, "list")
   expect_length(image_dict, 10)
-  for (img in image_dict) {
-    expect_is(img, "rastergrob")
-  }
 })
