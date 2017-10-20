@@ -16,3 +16,17 @@ test_that("plot_system() returns a plot given valid data", {
   expect_is(a_plot, "ggplot")
   
 })
+
+# test render_body()
+
+# test pad()
+test_that("pad() fails given invalid inputs", {
+  expect_error(pad())
+  expect_error(pad(3, 'max', 1, size = 'a'))
+})
+
+test_that("pad() works given valid inputs", {
+  expect_is(pad(3, 'max', 1, 4), 'numeric')
+  expect_is(pad(2.5, 'min', 1.3, 0.8), 'numeric')
+  expect_is(pad(345, 'min', 8923, 467), 'numeric')
+})
