@@ -23,13 +23,15 @@ celestial_body <- function(position, velocity, mass) {
   
   body_list <- list('position' = position,
                     'velocity' = velocity,
-                    'mass' = mass)
+                    'mass' = mass,
+                    'body' = TRUE)
   return(body_list)
 }
 
 # todo: create seperate method to initialize sun / earth
 # todo: create seperate method to initialize earth / moon
 # todo: create seperate method to initialize sun / earth / moon
+# todo: create seperate method to initialize each planet, extract below
 
 solar_system <- function() {
   system_list <- list("sun" = celestial_body(c(0, 0), c(0, 0), 1.989e30),
@@ -53,13 +55,23 @@ solar_system <- function() {
 
 }
 
-# todo: adapt initialize_system() so it can unpack the solar_system() et. al funcs
+
 initialize_system <- function(...) {
-  inits <- "!!!"
+  inits <- list()
   user_inits <- list(...)
-  for (name in names(user_inits)) {
-    # todo: make assertions about shape / class
-    inits[[name]] <- user_inits[[name]]
+  user_names <- names(user_inits)
+  
+  for (i in 1:length(user_inits)) {
+    is_body <- user_inits[[i]]$body
+    if (isTRUE(is_body)) {
+      name <- user_names[i]
+      inits[[name]] <- user_inits[[name]]
+    } else {
+      sub_system <- user_inits[[i]]
+      for (name in names(sub_system)) {
+        inits[[name]] <- sub_system[[name]]
+      }
+    }
   }
   return(inits)
 }
