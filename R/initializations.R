@@ -28,22 +28,81 @@ celestial_body <- function(position, velocity, mass) {
   return(body_list)
 }
 
+sun <- function() {
+  celestial_body(position = c(0, 0), 
+                 velocity = c(0, 0), 
+                 mass = 1.989e30)
+}
+
+mercury <- function() {
+  celestial_body(position = c(5.79e10, 0), 
+                 velocity = c(0, 4.74e4), 
+                 mass = 3.3e23)
+}
+
+venus <- function() {
+  celestial_body(position = c(1.082e11, 0), 
+                 velocity = c(0, 3.5e4), 
+                 mass = 4.87e24)  
+}
+
+earth <- function() {
+  celestial_body(position = c(1.496e11, 0), 
+                 velocity = c(0, 2.978e4), 
+                 mass = 5.972e24)
+}
+
+mars <- function() {
+  celestial_body(position = c(2.279e11, 0), 
+                 velocity = c(0, 2.41e4), 
+                 mass = 6.42e23)
+}
+
+jupiter <- function() {
+  celestial_body(position = c(7.786e11, 0), 
+                 velocity = c(0, 1.31e4), 
+                 mass = 1.9e27)
+}
+
+saturn <- function() {
+  celestial_body(position = c(1.433e12, 0), 
+                 velocity = c(0, 9.6e3), 
+                 mass = 5.69e26)
+}
+
+uranus <- function() {
+  celestial_body(position = c(2.873e12, 0), 
+                 velocity = c(0, 6.8e3), 
+                 mass = 8.68e25)
+}
+
+neptune <- function() {
+  celestial_body(position = c(4.495e12, 0), 
+                 velocity = c(0, 5.4e3), 
+                 mass = 1.03e26)
+}
+
+pluto <- function() {
+  celestial_body(position = c(5.906e12, 0), 
+                 velocity = c(0, 4.74e3), 
+                 mass = 1.46e22) 
+}
+
 # todo: create seperate method to initialize sun / earth
 # todo: create seperate method to initialize earth / moon
 # todo: create seperate method to initialize sun / earth / moon
-# todo: create seperate method to initialize each planet, extract below
 
 solar_system <- function() {
-  system_list <- list("sun" = celestial_body(c(0, 0), c(0, 0), 1.989e30),
-                      "mercury" = celestial_body(c(5.79e10, 0), c(0, 4.74e4), 3.3e23),
-                      "venus" = celestial_body(c(1.082e11, 0), c(0, 3.5e4), 4.87e24),
-                      "earth" = celestial_body(c(1.496e11, 0), c(0, 2.978e4), 5.972e24),
-                      "mars" = celestial_body(c(2.279e11, 0), c(0, 2.41e4), 6.42e23),
-                      "jupiter" = celestial_body(c(7.786e11, 0), c(0, 1.31e4), 1.9e27),
-                      "saturn" = celestial_body(c(1.433e12, 0), c(0, 9.6e3), 5.69e26),
-                      "uranus" = celestial_body(c(2.873e12, 0), c(0, 6.8e3), 8.68e25),
-                      "neptune" = celestial_body(c(4.495e12, 0), c(0, 5.4e3), 1.03e26),
-                      "pluto" = celestial_body(c(5.906e12, 0), c(0, 4.74e3), 1.46e22) )
+  system_list <- list("sun" = sun(),
+                      "mercury" = mercury(),
+                      "venus" = venus(),
+                      "earth" = earth(),
+                      "mars" = mars(),
+                      "jupiter" = jupiter(),
+                      "saturn" = saturn(),
+                      "uranus" = uranus(),
+                      "neptune" = neptune(),
+                      "pluto" = pluto() )
   
   convert_element_to_au <- function(x, element) {
     x[[element]] <- x[[element]] / AU

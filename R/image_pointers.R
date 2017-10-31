@@ -1,7 +1,6 @@
 
-package_root <- devtools::package_file()
-
 load_image <- function(rel_path) {
+  package_root <- devtools::package_file()
   im_path <- paste0(package_root, rel_path)
   grid::rasterGrob(png::readPNG(im_path), interpolate = FALSE)
 }
