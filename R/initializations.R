@@ -6,7 +6,7 @@ AU <- function() {
 }
 
 
-set_constants <- function(G = 6.67408e-11 / AU^3,
+set_constants <- function(G = 6.67408e-11 / AU()^3,
                           M = 1.989e30,
                           dt = 8.64e4) {
   constants <- list("G" = G,
@@ -43,6 +43,7 @@ celestial_body <- function(position, velocity, mass) {
   assertthat::assert_that(length(position) == 2)
   assertthat::assert_that(length(velocity) == 2)
   assertthat::assert_that(length(mass) == 1)
+  assertthat::assert_that(mass > 0)
   
   body_list <- list('position' = position,
                     'velocity' = velocity,
@@ -110,8 +111,6 @@ pluto <- function() {
                  velocity = c(0, 4.74e3) / AU(), 
                  mass = 1.46e22) 
 }
-
-# todo: extact AU conversion to stand-alone method that is called by each plaet() func
 
 solar_system <- function() {
   list("sun" = sun(),
