@@ -15,19 +15,39 @@ set_constants <- function(G = 6.67408e-11 / AU()^3,
   return(constants)
 }
 
+is_celestial_body <- function(x) {
+  if (is.list(x)) {
+    has_position <- length(x$position) == 2
+    has_velocity <- length(x$velocity) == 2
+    has_mass <- length(x$mass) == 1
+    has_proper_elements <- has_position & has_velocity & has_mass
+    has_proper_types_list <- lapply(X = x[c('position', 'velocity', 'mass')],
+                                    FUN = is.numeric)
+    has_proper_types_int <- min(unlist(has_proper_types_list))
+    has_proper_types <- as.logical(has_proper_types_int)
+    answer <- has_proper_elements & has_proper_types
+  } else {
+    answer <- FALSE
+  }
+  return(answer)
+}
+
 initialize_system <- function(...) {
   inits <- list()
   user_inits <- list(...)
   user_names <- names(user_inits)
   
   for (i in 1:length(user_inits)) {
-    is_body <- user_inits[[i]]$body
-    if (isTRUE(is_body)) {
+    assertthat::assert_that(is.list(user_inits[[i]]))
+    if (is_celestial_body(user_inits[[i]])) {
       name <- user_names[i]
       inits[[name]] <- user_inits[[name]]
     } else {
       sub_system <- user_inits[[i]]
-      for (name in names(sub_system)) {
+      for (i in length(sub_system)) {
+        list_element <- sub_system[[i]]
+        assertthat::assert_that(is_celestial_body(list_element))
+        name <- names(sub_system)[i]
         inits[[name]] <- sub_system[[name]]
       }
     }
