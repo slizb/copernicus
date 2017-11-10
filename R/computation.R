@@ -24,34 +24,3 @@ execute_leapfrog <- function(x, y, vx_prev_half, vy_prev_half, constants) {
   
   return(list(x_next, y_next, vx_next_half, vy_next_half))
 }
-
-# inits <- set_initializations()
-
-# run simulation -----------------------------------------------------
-
-# saveGIF(interval = .05,
-#         movie.name = "img/2_body_system.gif",
-#         expr = {
-# 
-#              for (i in 1:365){
-# 
-#                   # plot
-#                   df <- data.frame(rbind(c(x=x, y=y),
-#                                          c(x=0, y=0)))
-#                   df$body <- c('earth', 'sun')
-# 
-#                   print(plot_system(df))
-# 
-#                   # run leapfrog algorithm
-#                   next_sequence <- execute_leapfrog(x, y, vx_prev_half, vy_prev_half)
-# 
-#                   # update positions
-#                   x <- next_sequence[[1]]
-#                   y <- next_sequence[[2]]
-#                   vx_prev_half <- next_sequence[[3]]
-#                   vy_prev_half <- next_sequence[[4]]
-# 
-#              }
-#         }
-# )
-
