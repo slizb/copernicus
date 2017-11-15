@@ -10,16 +10,15 @@
 #' @export
 #'
 #' @examples
-execute_leapfrog <- function(x, y, vx_prev_half, vy_prev_half, constants) {
+execute_leapfrog <- function(x, y, vx_prev_half, vy_prev_half, constants, m) {
   G <- constants$G
-  M <- constants$M
   dt <- constants$dt
   
   # compute future positions
-  vx_next_half <- vx_prev_half - dt * G * M * x * (x^2 + y^2) ^ (-3/2)
+  vx_next_half <- vx_prev_half - dt * G * m * x * (x^2 + y^2) ^ (-3/2)
   x_next <- x + dt * vx_next_half
   
-  vy_next_half <- vy_prev_half - dt * G * M * y * (x^2 + y^2) ^ (-3/2)
+  vy_next_half <- vy_prev_half - dt * G * m * y * (x^2 + y^2) ^ (-3/2)
   y_next <- y + dt * vy_next_half
   
   return(list(x_next, y_next, vx_next_half, vy_next_half))
